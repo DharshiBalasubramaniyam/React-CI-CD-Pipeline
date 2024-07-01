@@ -9,18 +9,25 @@ function App() {
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(true)
 
+  const apiUrl = '/api/proxy';
+
+
   const fetchMessage = async () => {
-    await axios
-      .get(`${API_BASE_URL}/home`)
-      .then(response => {
+    fetch(apiUrl, {
+      method: 'GET', // or 'POST', 'PUT', etc.
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.text())
+      .then(data => {
         console.log(response)
         setMessage(response.data)
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error)
         setError(true)
-      })
-
+      });
     setLoading(false)
   }
 
@@ -32,8 +39,8 @@ function App() {
     <section className="grid place-items-center p-2 min-h-screen bg-blue-900 text-white">
       {
         loading ? <p>Loading...</p> :
-        error ? <p>Unable to fetch message!</p> :
-        <p>{message}</p>
+          error ? <p>Unable to fetch message!</p> :
+            <p>{message}</p>
       }
     </section>
   )
