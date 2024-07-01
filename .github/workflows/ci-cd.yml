@@ -1,0 +1,35 @@
+name: Dockerize React App
+
+on: # Trigger the workflow on push events to the main branch
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # Runs on the latest version of Ubuntu | Default operating system environment for workflows unless explicitly specified.
+
+    steps:
+      - name: Checkout code  # Step to checkout the code from the repository | Fetch the source code repository into the runner machine where our workflow is executing. 
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js # Step to set up Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm' # Cache npm dependencies for faster builds
+
+      - name: Install Dependencies # Step to install npm dependencies
+        run: npm ci
+
+      - name: Build the React app  # Step to build the React app
+        run: npm run build
+
+      - name: build and push the docker image to dockerhub
+        run: |
+          # 1. Login to DockerHub
+          docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} 
+          # 2. Build the Docker image
+          docker build -t ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_IMAGE_NAME}}:${{secrets.IMAGE_TAG_NAME}} .  
+          # 3. Push the Docker image to DockerHub
+          docker push ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_IMAGE_NAME}}:${{secrets.IMAGE_TAG_NAME}}
