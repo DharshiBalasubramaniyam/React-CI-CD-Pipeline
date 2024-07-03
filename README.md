@@ -29,7 +29,7 @@ The main features of this project include:
 
 5. **Continuous Integration with GitHub Actions**: Automated build, dockerization and deployment of the Spring Boot application using GitHub Actions. Every push to the main branch triggers the CI pipeline.
 
-The backend springboot application is also Dockerized and deployed using GitHub Actions, Docker, and AWS. Explore the backend repository <a href="https://github.com/DharshiBalasubramaniyam/React-CI-CD-Pipeline">here</a>.
+The backend springboot application is also Dockerized and deployed using GitHub Actions, Docker, and AWS. Explore the backend repository <a href="https://github.com/DharshiBalasubramaniyam/Springboot-CI-CD-Pipeline">here</a>.
 
 Checkout the explanation of dockarization and AWS deployment <a href="https://github.com/DharshiBalasubramaniyam/Springboot-CI-CD-Pipeline/blob/main/README.md">here</a>.
 
