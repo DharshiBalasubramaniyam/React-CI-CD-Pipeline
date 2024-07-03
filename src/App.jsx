@@ -1,42 +1,24 @@
-import axios from "axios"
-import { useEffect } from "react"
 import { useState } from "react"
-import { API_BASE_URL } from "./api-service/ApiConfig"
+import Header from "./components/Header"
+import InventoryTable from "./components/InventoryTable"
+import NewInventory from "./components/NewInventory"
+import EditInventory from "./components/EditInventory"
+import InventoryWrapper from "./api-service/InventoryService"
 
 function App() {
 
-  const [message, setMessage] = useState(null)
-  const [error, setError] = useState(false)
-  const [loading, setLoading] = useState(true)
 
-  const fetchMessage = async () => {
-    await axios
-      .get(`${API_BASE_URL}/home`)
-      .then(response => {
-        console.log(response)
-        setMessage(response.data)
-      })
-      .catch((error) => {
-        console.log(error)
-        setError(true)
-      })
-
-    setLoading(false)
-  }
-
-  useEffect(() => {
-    fetchMessage()
-  }, [])
+  const [toggleNewInventory, setToggleNewInventory] = useState(false)
+  const [toggleEditInventory, setToggleEditInventory] = useState(false)
 
   return (
-    <section className="grid place-items-center p-2 min-h-screen bg-blue-900 text-white">
-      {
-        loading ? <p>Loading...</p> :
-        error ? <p>Unable to fetch message!</p> :
-        <p>{message}</p>
-      }
-    </section>
+    <InventoryWrapper>
+      <Header setToggleNewInventory={setToggleNewInventory}/>
+      <InventoryTable setToggleEditInventory={setToggleEditInventory}/>
+      {toggleNewInventory && <NewInventory setToggleNewInventory={setToggleNewInventory}/>}
+      {toggleEditInventory && <EditInventory setToggleEditInventory={setToggleEditInventory}/>}
+    </InventoryWrapper>
   )
 }
 
-export default App
+export default App;
