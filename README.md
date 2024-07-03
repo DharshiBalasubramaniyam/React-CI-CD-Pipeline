@@ -34,3 +34,16 @@ The backend springboot application is also Dockerized and deployed using GitHub 
 Checkout the explanation of dockarization and AWS deployment <a href="https://github.com/DharshiBalasubramaniyam/Springboot-CI-CD-Pipeline/blob/main/README.md">here</a>.
 
 - - -
+
+## 🌟 Screenshots
+
+![Screenshot 2024-07-03 083526](https://github.com/DharshiBalasubramaniyam/React-CI-CD-Pipeline/assets/139672976/d5e8e90a-5881-4f57-8121-14cc8405d918)
+
+
+![Screenshot 2024-07-03 083549](https://github.com/DharshiBalasubramaniyam/React-CI-CD-Pipeline/assets/139672976/e9748511-e831-4d89-9cc3-50da2e66371d)
+
+
+![Screenshot 2024-07-03 083611](https://github.com/DharshiBalasubramaniyam/React-CI-CD-Pipeline/assets/139672976/21a5aad8-e6f7-40e6-a05c-1df6cda0758b)
+
+
+
