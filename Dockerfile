@@ -1,13 +1,19 @@
-FROM node:18-alpine 
+FROM node:18-alpine AS builder
 
-WORKDIR /ci-cd-app
+WORKDIR /app
 
-COPY package*.json ./
+COPY package.json ./
 
 RUN npm install
 
 COPY . .
 
+RUN npm run build
+
+FROM nginx:alpine
+
+COPY --from=builder /app/dist /usr/share/nginx/html
+
 EXPOSE 5173
 
-CMD ["npm", "run", "dev"]
+CMD ["nginx", "-g", "daemon off;"]
